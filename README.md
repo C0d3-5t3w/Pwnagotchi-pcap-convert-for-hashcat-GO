@@ -6,7 +6,7 @@ Converts .pcap files in ~/handshakes into hashcat acceptable files in a ~/hashca
 
 cd ~
 
-sudo wget " "
+sudo wget "https://raw.githubusercontent.com/C0d3-5t3w/Pwnagotchi-pcap-convert-for-hashcat-GO/refs/heads/main/pcapconvert.go"
 
 sudo go build pcapconvert.go
 
