@@ -45,8 +45,8 @@ func main() {
 	checkRoot()
 	checkHcxpcaptool()
 
-	handshakes := filepath.Join(os.Getenv("HOME"), "handshakes")
-	hashcatables := filepath.Join(os.Getenv("HOME"), "hashcatables")
+	handshakes := "/home/pi/handshakes"
+	hashcatables := "/home/pi/hashcatables"
 
 	if _, err := os.Stat(hashcatables); os.IsNotExist(err) {
 		err = os.Mkdir(hashcatables, 0755)
