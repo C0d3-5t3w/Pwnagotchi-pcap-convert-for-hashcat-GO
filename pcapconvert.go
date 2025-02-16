@@ -1,5 +1,5 @@
 package main
-
+// Author: c0d3-5t3w
 import (
 	"fmt"
 	"os"
@@ -16,23 +16,23 @@ func checkRoot() {
 }
 
 func checkHcxpcaptool() {
-	cmd := exec.Command("hcxpcaptool", "--version")
+	cmd := exec.Command("hcxpcapngtool", "--version")
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println("hcxpcaptool is not installed. Installing...")
-		installCmd := exec.Command("sudo", "apt-get", "install", "-y", "hcxpcaptool")
+		fmt.Println("hcxpcapngtool is not installed. Installing hcxtools...")
+		installCmd := exec.Command("sudo", "apt-get", "install", "-y", "hcxtool")
 		installCmd.Stdout = os.Stdout
 		installCmd.Stderr = os.Stderr
 		err = installCmd.Run()
 		if err != nil {
-			fmt.Printf("Failed to install hcxpcaptool: %v\n", err)
+			fmt.Printf("Failed to install hcxtools: %v\n", err)
 			os.Exit(1)
 		}
 	}
 }
 
 func convertPcapToHashcat(pcapFile, outputFile string) bool {
-	cmd := exec.Command("hcxpcaptool", "-z", outputFile, pcapFile)
+	cmd := exec.Command("hcxpcapngtool", "-z", outputFile, pcapFile)
 	err := cmd.Run()
 	if err != nil {
 		fmt.Printf("Error converting %s: %v\n", pcapFile, err)
