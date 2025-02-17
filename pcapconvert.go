@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"os/signal"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 )
 
@@ -71,6 +73,16 @@ func main() {
 		fmt.Printf("Output directory %s already exists.\n", hashcatables)
 	}
 
+	sigs := make(chan os.Signal, 1)
+	done := make(chan bool, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	go func() {
+		sig := <-sigs
+		fmt.Printf("\nReceived signal %s, exiting gracefully...\n", sig)
+		done <- true
+	}()
+
 	fmt.Printf("Walking through the directory %s to find .pcap files...\n", handshakes)
 	err := filepath.Walk(handshakes, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -85,8 +97,8 @@ func main() {
 					fmt.Printf("Converted %s to %s\n", path, outputFile)
 				} else {
 					fmt.Printf("Failed to convert %s\n", path)
-					time.Sleep(100 * time.Millisecond) 
 				}
+				time.Sleep(1 * time.Second) // Update delay to 1 second
 			} else {
 				fmt.Printf("Skipping %s, already converted\n", path)
 			}
@@ -98,5 +110,7 @@ func main() {
 		fmt.Printf("Error walking the path %s: %v\n", handshakes, err)
 		os.Exit(1)
 	}
+
+	<-done
 	fmt.Println("Finished pcap to hashcat conversion script.")
 }
