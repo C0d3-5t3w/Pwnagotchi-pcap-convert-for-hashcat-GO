@@ -40,7 +40,7 @@ func checkHcxpcaptool() {
 
 func convertPcapToHashcat(pcapFile, outputFile string) bool {
 	fmt.Printf("Converting %s to %s...\n", pcapFile, outputFile)
-	cmd := exec.Command("hcxpcapngtool", "-z", outputFile, pcapFile)
+	cmd := exec.Command("hcxpcapngtool", "-o", outputFile, pcapFile)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf("Error converting %s: %v\nOutput: %s\n", pcapFile, err, string(output))
