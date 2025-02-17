@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 func checkRoot() {
@@ -84,6 +85,7 @@ func main() {
 					fmt.Printf("Converted %s to %s\n", path, outputFile)
 				} else {
 					fmt.Printf("Failed to convert %s\n", path)
+					time.Sleep(100 * time.Millisecond) 
 				}
 			} else {
 				fmt.Printf("Skipping %s, already converted\n", path)
