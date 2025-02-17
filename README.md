@@ -2,7 +2,9 @@
 
 Converts .pcap files in ~/handshakes into hashcat acceptable files in a ~/hashcatables folder
 
-# How to (you'll need to add go back to path and enable it in sudoers):
+# How to: 
+
+(you'll need to add go back to path and enable it in sudoers or you can 'sudo apt-get golang' which will be enough)
 
 cd ~
 
