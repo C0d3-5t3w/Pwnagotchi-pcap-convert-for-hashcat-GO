@@ -1,6 +1,6 @@
 # Pwnagotchi-pcap-covert-for-hashcat-GO
 
-Converts .pcap files in ~/handshakes into hashcat acceptable files in a ~/hashcatables folder
+Converts .pcap files in ~/handshakes into hashcat acceptable .hc22000 files in a ~/hashcatables folder
 
 # How to: 
 
