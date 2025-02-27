@@ -91,14 +91,15 @@ func main() {
 		}
 		if strings.HasSuffix(info.Name(), ".pcap") {
 			fmt.Printf("Found .pcap file: %s\n", path)
-			outputFile := filepath.Join(hashcatables, strings.Replace(info.Name(), ".pcap", ".hc22000", 1))
+			baseName := strings.TrimSuffix(info.Name(), ".pcap")
+			outputFile := filepath.Join(hashcatables, baseName + ".hc22000")
 			if _, err := os.Stat(outputFile); os.IsNotExist(err) {
 				if convertPcapToHashcat(path, outputFile) {
 					fmt.Printf("Converted %s to %s\n", path, outputFile)
 				} else {
 					fmt.Printf("Failed to convert %s\n", path)
 				}
-				time.Sleep(1 * time.Second) // Update delay to 1 second
+				time.Sleep(1 * time.Second)
 			} else {
 				fmt.Printf("Skipping %s, already converted\n", path)
 			}
