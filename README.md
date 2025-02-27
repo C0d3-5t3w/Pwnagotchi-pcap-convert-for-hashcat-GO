@@ -1,20 +1,22 @@
 # Pwnagotchi-pcap-covert-for-hashcat-GO
 
-Converts .pcap files in ~/handshakes into hashcat acceptable .hc22000 files in a ~/hashcatables folder
+* Converts .pcap files in ~/handshakes into hashcat acceptable .hc22000 files in a ~/hashcatables folder
+
+* Includes a previously converted function so you can run it as many times as you please till everythings converted.
 
 # How to: 
 
-(you'll need to add go back to path and enable it in sudoers or you can 'sudo apt-get golang' which will be enough)
+* (you'll need to add golang back to path and enable it in sudoers or you can 'sudo apt-get golang' which will be enough)
 
-cd ~
+* cd ~
 
-sudo wget "https://raw.githubusercontent.com/C0d3-5t3w/Pwnagotchi-pcap-convert-for-hashcat-GO/refs/heads/main/pcapconvert.go"
+* sudo wget "https://raw.githubusercontent.com/C0d3-5t3w/Pwnagotchi-pcap-convert-for-hashcat-GO/refs/heads/main/pcapconvert.go"
 
-sudo go build pcapconvert.go
+* sudo go build pcapconvert.go
 
-sudo chmod +x pcapconvert
+* sudo chmod +x pcapconvert
 
-sudo ./pcapconvert
+* sudo ./pcapconvert
 
 # ENJOY!!! if you have any issues find and @ me in the pwnagotchi unofficial discord: https://discord.gg/wBgZPn6M
 
