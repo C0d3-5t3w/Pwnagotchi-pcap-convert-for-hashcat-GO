@@ -1,5 +1,5 @@
 package main
-// Author: c0d3-5t3w
+// Author: C0d3-5t3w
 import (
 	"fmt"
 	"os"
