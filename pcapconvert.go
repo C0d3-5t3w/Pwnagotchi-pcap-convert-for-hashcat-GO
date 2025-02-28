@@ -22,8 +22,7 @@ func checkRoot() {
 
 func checkHcxpcaptool() {
 	fmt.Println("Checking if hcxpcapngtool is installed...")
-	cmd := exec.Command("hcxpcapngtool", "--version")
-	err := cmd.Run()
+	_, err := exec.LookPath("hcxpcapngtool")
 	if err != nil {
 		fmt.Println("hcxpcapngtool is not installed. Installing hcxtools...")
 		installCmd := exec.Command("sudo", "apt-get", "install", "-y", "hcxtool")
@@ -77,12 +76,6 @@ func main() {
 	done := make(chan bool, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	go func() {
-		sig := <-sigs
-		fmt.Printf("\nReceived signal %s, exiting gracefully...\n", sig)
-		done <- true
-	}()
-
 	fmt.Printf("Walking through the directory %s to find .pcap files...\n", handshakes)
 	err := filepath.Walk(handshakes, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -112,6 +105,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	<-done
+	select {
+	case sig := <-sigs:
+		fmt.Printf("\nReceived signal %s, exiting gracefully...\n", sig)
+	}
+
 	fmt.Println("Finished pcap to hashcat conversion script.")
 }
