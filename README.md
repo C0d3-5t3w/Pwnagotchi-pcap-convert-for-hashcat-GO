@@ -1,4 +1,4 @@
-# Pwnagotchi-pcap-covert-for-hashcat-GO
+# Pwnagotchi-pcap-covert-to-hashcat
 
 * Converts .pcap files in ~/handshakes into hashcat acceptable .hc22000 files in a ~/hashcatables folder
 
@@ -10,7 +10,7 @@
 
 * cd ~
 
-* sudo wget "https://raw.githubusercontent.com/C0d3-5t3w/Pwnagotchi-pcap-convert-for-hashcat-GO/refs/heads/main/pcapconvert.go"
+* sudo wget "https://raw.githubusercontent.com/C0d3-5t3w/Pwnagotchi-pcap-convert-to-hashcat/refs/heads/main/pcapconvert.go"
 
 * sudo go build pcapconvert.go
 
